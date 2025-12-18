@@ -1,0 +1,17 @@
+module Syn_up (
+    input  wire clk,       // clock input
+    input  wire rst,       // synchronous reset
+    input  wire d,         // direction: 1 = up, 0 = down
+    output reg [3:0] q     // 4-bit counter output
+);
+
+always @(posedge clk) begin
+    if (rst)
+        q <= 4'b0000;         // reset to 0
+    else if (d)
+        q <= q + 1;           // count up
+    else
+        q <= q - 1;           // count down
+end
+
+endmodule
